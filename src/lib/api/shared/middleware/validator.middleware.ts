@@ -5,11 +5,13 @@ import { validate } from 'class-validator';
 import { CreateDeviceDto } from '../../../../modules/resources/device/dto/create.dto';
 import { CreateUserDto } from '../../../../modules/resources/user/dto/create.dto';
 import { LoginUserDto } from '../../../../modules/resources/user/dto/login.dto';
+import { CreateGeofenceDto } from '../../../../modules/resources/geofence/dto/create.dto';
 
 const apiPaths = {
   '/api/v1/devices/create': CreateDeviceDto,
   '/api/v1/users/create': CreateUserDto,
   '/api/v1/users/login': LoginUserDto,
+  '/api/v1/geofence/create': CreateGeofenceDto,
 };
 export class ValidatorMiddleware {
   constructor(private readonly apiResponses: ApiResponses) {}

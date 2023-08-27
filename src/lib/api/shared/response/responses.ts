@@ -1,3 +1,4 @@
+import { captureException } from '../../../../lib/utils/sentry/sentry.util';
 import { HttpStatus } from './http-status';
 import { Response } from 'express';
 
@@ -20,7 +21,10 @@ export class ApiResponses {
     });
   }
 
-  internalServerError(res: Response, body: { message?: string; error?: any }) {
+  internalServerError(res: Response, body: { message?: string; error: any }) {
+    //* Sentry error capture
+    captureException(body.error);
+
     return res.status(HttpStatus.INTERVAL_SERVER_ERROR).json({
       success: false,
       timestamp: new Date().toISOString(),
